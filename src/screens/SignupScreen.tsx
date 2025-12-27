@@ -5,30 +5,57 @@ import {
   TextInput,
   TouchableOpacity,
   StyleSheet,
+  TouchableWithoutFeedback,
+  Touchable,
+  Keyboard
 } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import LottieView from 'lottie-react-native';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+
 
 const SignupScreen = ({ navigation }: any) => {
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Create Account 👟</Text>
+    <SafeAreaView style={styles.container}>
+      <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+        <View style={styles.wrapper}>
+          {/* top section */}
+          <View style={styles.topSection}>
+            <LottieView
+            source = {require('../assets/lottie/login.json')}
+            autoPlay
+            loop
+            style={styles.lottie}
+            />
+            <Text style={styles.title}>Join the Movement 👟</Text>
+          </View>
 
+        {/* bottom section */}
+        <KeyboardAwareScrollView
+
+          style={{ flex: 1 }}
+          contentContainerStyle={styles.bottomSection}
+          enableOnAndroid
+          keyboardShouldPersistTaps="handled"
+          showsVerticalScrollIndicator={true}
+        >
       <TextInput
         placeholder="Full Name"
         style={styles.input}
-        editable={false}
+        editable={true}
       />
 
       <TextInput
         placeholder="Email"
         style={styles.input}
-        editable={false}
+        editable={true}
       />
 
       <TextInput
         placeholder="Password"
         secureTextEntry
         style={styles.input}
-        editable={false}
+        editable={true}
       />
 
       <TouchableOpacity
@@ -38,12 +65,15 @@ const SignupScreen = ({ navigation }: any) => {
         <Text style={styles.buttonText}>Sign Up</Text>
       </TouchableOpacity>
 
-      <TouchableOpacity onPress={() => navigation.goBack()}>
+      <TouchableOpacity onPress={() => navigation.goBack('Login')}>
         <Text style={styles.linkText}>
           Already have an account? Login
         </Text>
       </TouchableOpacity>
-    </View>
+      </KeyboardAwareScrollView>
+      </View>
+      </TouchableWithoutFeedback>
+    </SafeAreaView>
   );
 };
 
@@ -52,37 +82,71 @@ export default SignupScreen;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    padding: 24,
     backgroundColor: '#fff',
   },
+
+  wrapper:{
+    flex: 1,
+  },
+
+  /* Top section */
+
+  topSection : {
+    flex:0.9,
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingTop:80,
+  },
+
+  lottie:{
+    width: 300,
+    height: 300,
+  },
+
   title: {
-    fontSize: 28,
-    fontWeight: '700',
-    marginBottom: 32,
+    fontSize: 25,
+    fontWeight: '500',
+    marginBottom: 50,
     textAlign: 'center',
   },
+  /* Bottom Section */
+  bottomSection: {
+    flexGrow: 1,
+    justifyContent: 'center',
+    paddingHorizontal: 30,
+    paddingBottom: 30,
+  },
+
   input: {
     borderWidth: 1,
-    borderColor: '#ddd',
     padding: 14,
-    borderRadius: 8,
+    borderColor: '#ddd',
+    backgroundColor: '#fff',
+    paddingVertical: 14,
+    paddingHorizontal: 16,
+    borderRadius: 10,
     marginBottom: 16,
+    fontSize: 15,
   },
+  
   button: {
     backgroundColor: '#000',
-    padding: 16,
-    borderRadius: 8,
-    marginTop: 8,
+    paddingVertical: 16,
+    borderRadius: 10,
+    marginTop: 6,
   },
+
   buttonText: {
     color: '#fff',
     textAlign: 'center',
-    fontWeight: '600',
+    fontWeight: '700',
+    fontSize: 16,
   },
+
   linkText: {
-    marginTop: 20,
+    marginTop: 22,
     textAlign: 'center',
-    color: '#555',
+    color: '#1c1b1bff',
+    fontSize: 14,
   },
 });

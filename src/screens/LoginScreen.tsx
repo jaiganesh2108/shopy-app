@@ -5,12 +5,13 @@ import {
   TextInput,
   TouchableOpacity,
   StyleSheet,
-  SafeAreaView,
   Keyboard,
   TouchableWithoutFeedback,
 } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import LottieView from 'lottie-react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
+
 
 const LoginScreen = ({ navigation }: any) => {
   return (
@@ -18,7 +19,7 @@ const LoginScreen = ({ navigation }: any) => {
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
         <View style={styles.wrapper}>
 
-          {/* 🔼 Top Section */}
+          {/* Top Section */}
           <View style={styles.topSection}>
             <LottieView
               source={require('../assets/lottie/login.json')}
@@ -26,16 +27,16 @@ const LoginScreen = ({ navigation }: any) => {
               loop
               style={styles.lottie}
             />
-            <Text style={styles.title}>Welcome 👟</Text>
+            <Text style={styles.title}>Let’s Get Moving 👟</Text>
           </View>
 
-          {/* 🔽 Bottom Section */}
+          {/* Bottom Section */}
           <KeyboardAwareScrollView
             style={{ flex: 1 }}
             contentContainerStyle={styles.bottomSection}
             enableOnAndroid
             keyboardShouldPersistTaps="handled"
-            showsVerticalScrollIndicator={false}
+            showsVerticalScrollIndicator={true}
           >
             <TextInput
               placeholder="Email"
@@ -69,7 +70,6 @@ const LoginScreen = ({ navigation }: any) => {
               </Text>
             </TouchableOpacity>
           </KeyboardAwareScrollView>
-
         </View>
       </TouchableWithoutFeedback>
     </SafeAreaView>
@@ -78,19 +78,17 @@ const LoginScreen = ({ navigation }: any) => {
 
 export default LoginScreen;
 
-/* ======================= STYLES ======================= */
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#2fd037ff',
+    backgroundColor: '#F8FAFC',
   },
 
   wrapper: {
     flex: 1,
   },
 
-  /* 🔼 Top Section */
+  /* Top Section */
   topSection: {
     flex: 0.9,
     alignItems: 'center',
@@ -104,17 +102,17 @@ const styles = StyleSheet.create({
   },
 
   title: {
-    fontSize: 28,
-    fontWeight: '900',
+    fontSize: 25,
+    fontWeight: '500',
     marginTop: 8,
-    color: 'rgba(35, 35, 35, 1)',
+    color: '#111111',
   },
 
-  /* 🔽 Bottom Section */
+  /* Bottom Section */
   bottomSection: {
     flexGrow: 1,
     justifyContent: 'center',
-    paddingHorizontal: 24,
+    paddingHorizontal: 30,
     paddingBottom: 30,
   },
 
@@ -130,7 +128,7 @@ const styles = StyleSheet.create({
   },
 
   button: {
-    backgroundColor: 'rgba(253, 36, 116, 1)',
+    backgroundColor: '#000',
     paddingVertical: 16,
     borderRadius: 10,
     marginTop: 6,
@@ -146,7 +144,7 @@ const styles = StyleSheet.create({
   linkText: {
     marginTop: 22,
     textAlign: 'center',
-    color: '#555',
+    color: '#1c1b1bff',
     fontSize: 14,
   },
 });
