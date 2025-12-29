@@ -12,6 +12,9 @@ This app demonstrates real-world e-commerce UI patterns such as animated search,
   <img src="https://github.com/user-attachments/assets/b130acab-1af1-481c-89cb-35977cbe1d60" width="200" />
   <img src="https://github.com/user-attachments/assets/645f67ee-8455-49c6-ac36-5ae347275d0b" width="200" />
 </p>
+
+---
+
 ## ✨ Features
 
 - 🛍️ **Product Grid Layout**
