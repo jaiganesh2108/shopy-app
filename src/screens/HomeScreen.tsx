@@ -1,57 +1,37 @@
 import React, { useState, useRef } from 'react';
-import {  View, Text, StyleSheet, ScrollView, TouchableOpacity, Image, Modal, Pressable, Animated, TextInput } from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  ScrollView,
+  TouchableOpacity,
+  Image,
+  Modal,
+  Pressable,
+  Animated,
+  TextInput,
+} from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+
 const ICON_HEART = require('../assets/icons/heart.png');
 const ICON_SEARCH = require('../assets/icons/search.png');
 const ICON_CART = require('../assets/icons/shopping-cart.png');
 const ICON_MENU = require('../assets/icons/menu-burger.png');
 
 const SHOES = [
-  { id: '1', 
-    name: 'Nike Air Max', 
-    price: '₹ 9,999', 
-    image: require('../assets/lottie/download.jpeg') 
-  },
-  { id: '2', 
-    name: 'Adidas Ultraboost', 
-    price: '₹ 11,499', 
-    image: require('../assets/lottie/images.jpeg') 
-  },
-  { id: '3', 
-    name: 'Puma RS-X', 
-    price: '₹ 8,499', 
-    image: require('../assets/lottie/download (1).jpeg') 
-  },
-  { id: '4', 
-    name: 'New Balance 574', 
-    price: '₹ 8,999', 
-    image: require('../assets/lottie/images (1).jpeg') 
-  },
-  { id: '5', 
-    name: 'Bata', 
-    price: '₹ 11,499', 
-    image: require('../assets/lottie/images (2).jpeg') 
-  },
-  { id: '6', 
-    name: 'Woodland', 
-    price: '₹ 8,499', 
-    image: require('../assets/lottie/images (3).jpeg') 
-  },
-  { id: '7', 
-    name: 'Skechers', 
-    price: '₹ 12,999', 
-    image: require('../assets/lottie/download (3).jpeg') 
-  },
-  { id: '8', 
-    name: 'Red Chief', 
-    price: '₹ 10,999', 
-    image: require('../assets/lottie/download (2).jpeg') 
-  },
+  { id: '1', name: 'Nike Air Max', price: '₹ 9,999', image: require('../assets/lottie/download.jpeg') },
+  { id: '2', name: 'Adidas Ultraboost', price: '₹ 11,499', image: require('../assets/lottie/images.jpeg') },
+  { id: '3', name: 'Puma RS-X', price: '₹ 8,499', image: require('../assets/lottie/download (1).jpeg') },
+  { id: '4', name: 'New Balance 574', price: '₹ 8,999', image: require('../assets/lottie/images (1).jpeg') },
+  { id: '5', name: 'Bata', price: '₹ 11,499', image: require('../assets/lottie/images (2).jpeg') },
+  { id: '6', name: 'Woodland', price: '₹ 8,499', image: require('../assets/lottie/images (3).jpeg') },
+  { id: '7', name: 'Skechers', price: '₹ 12,999', image: require('../assets/lottie/download (3).jpeg') },
+  { id: '8', name: 'Red Chief', price: '₹ 10,999', image: require('../assets/lottie/download (2).jpeg') },
 ];
 
 const BRANDS = ['All', 'Nike', 'Adidas', 'Puma', 'New Balance', 'Reebok', 'Asics'];
 
-function ShoeCard({ item }) {
+function ShoeCard({ item, navigation }: { item: typeof SHOES[0]; navigation: any }) {
   const [liked, setLiked] = useState(false);
   const scaleAnim = useRef(new Animated.Value(1)).current;
 
@@ -60,14 +40,17 @@ function ShoeCard({ item }) {
       Animated.timing(scaleAnim, { toValue: 1.3, duration: 120, useNativeDriver: true }),
       Animated.timing(scaleAnim, { toValue: 1, duration: 120, useNativeDriver: true }),
     ]).start();
-    setLiked(prev => !prev);
+    setLiked(!liked);
   };
 
   return (
     <View style={styles.card}>
       <TouchableOpacity style={styles.likeBtn} onPress={toggleLike}>
         <Animated.View style={{ transform: [{ scale: scaleAnim }] }}>
-          <Image source={ICON_HEART} style={[styles.icon, { tintColor: liked ? '#e63946' : '#999' }]} />
+          <Image
+            source={ICON_HEART}
+            style={[styles.icon, { tintColor: liked ? '#E63946' : '#999' }]}
+          />
         </Animated.View>
       </TouchableOpacity>
 
@@ -75,14 +58,17 @@ function ShoeCard({ item }) {
       <Text style={styles.shoeName} numberOfLines={1}>{item.name}</Text>
       <Text style={styles.price}>{item.price}</Text>
 
-      <TouchableOpacity style={styles.button}>
+      <TouchableOpacity
+        style={styles.button}
+        onPress={() => navigation.navigate('ProductDetails', { product: item })}
+      >
         <Text style={styles.buttonText}>Add to Cart</Text>
       </TouchableOpacity>
     </View>
   );
 }
 
-export default function HomeScreen() {
+export default function HomeScreen({ navigation }: { navigation: any }) {
   const [showProfile, setShowProfile] = useState(false);
   const [showMenu, setShowMenu] = useState(false);
   const [showSearch, setShowSearch] = useState(false);
@@ -104,6 +90,11 @@ export default function HomeScreen() {
         useNativeDriver: false,
       }).start();
     }
+  };
+
+  const handleMenuPress = (item: string) => {
+    setShowMenu(false);
+    if (item === 'Settings') navigation.navigate('Settings');
   };
 
   return (
@@ -134,7 +125,7 @@ export default function HomeScreen() {
                     placeholder="Search shoes..."
                     style={styles.searchInput}
                     autoFocus
-                    onSubmitEditing={toggleSearch}
+                    onBlur={toggleSearch}
                   />
                 </Animated.View>
               )}
@@ -168,7 +159,7 @@ export default function HomeScreen() {
         <View style={styles.grid}>
           {SHOES.map(item => (
             <View key={item.id} style={styles.gridItem}>
-              <ShoeCard item={item} />
+              <ShoeCard item={item} navigation={navigation} />
             </View>
           ))}
         </View>
@@ -190,7 +181,7 @@ export default function HomeScreen() {
         <Pressable style={styles.overlay} onPress={() => setShowMenu(false)}>
           <View style={styles.menuCard}>
             {['Settings', 'Saved', 'About', 'Logout'].map(item => (
-              <TouchableOpacity key={item} style={styles.menuItem}>
+              <TouchableOpacity key={item} style={styles.menuItem} onPress={() => handleMenuPress(item)}>
                 <Text style={styles.menuText}>{item}</Text>
               </TouchableOpacity>
             ))}
