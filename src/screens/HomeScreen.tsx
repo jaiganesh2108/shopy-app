@@ -19,14 +19,46 @@ const ICON_CART = require('../assets/icons/shopping-cart.png');
 const ICON_MENU = require('../assets/icons/menu-burger.png');
 
 const SHOES = [
-  { id: '1', name: 'Nike Air Max', price: '₹ 9,999', image: require('../assets/lottie/download.jpeg') },
-  { id: '2', name: 'Adidas Ultraboost', price: '₹ 11,499', image: require('../assets/lottie/images.jpeg') },
-  { id: '3', name: 'Puma RS-X', price: '₹ 8,499', image: require('../assets/lottie/download (1).jpeg') },
-  { id: '4', name: 'New Balance 574', price: '₹ 8,999', image: require('../assets/lottie/images (1).jpeg') },
-  { id: '5', name: 'Bata', price: '₹ 11,499', image: require('../assets/lottie/images (2).jpeg') },
-  { id: '6', name: 'Woodland', price: '₹ 8,499', image: require('../assets/lottie/images (3).jpeg') },
-  { id: '7', name: 'Skechers', price: '₹ 12,999', image: require('../assets/lottie/download (3).jpeg') },
-  { id: '8', name: 'Red Chief', price: '₹ 10,999', image: require('../assets/lottie/download (2).jpeg') },
+  { id: '1', 
+    name: 'Nike Air Max', 
+    price: '₹ 9,999', 
+    image: require('../assets/lottie/download.jpeg') 
+  },
+  { id: '2', 
+    name: 'Adidas Ultraboost', 
+    price: '₹ 11,499', 
+    image: require('../assets/lottie/images.jpeg') 
+  },
+  { id: '3', 
+    name: 'Puma RS-X', 
+    price: '₹ 8,499', 
+    image: require('../assets/lottie/download (1).jpeg') 
+  },
+  { id: '4', 
+    name: 'New Balance 574', 
+    price: '₹ 8,999', 
+    image: require('../assets/lottie/images (1).jpeg') 
+  },
+  { id: '5', 
+    name: 'Bata', 
+    price: '₹ 11,499', 
+    image: require('../assets/lottie/images (2).jpeg') 
+  },
+  { id: '6', 
+    name: 'Woodland', 
+    price: '₹ 8,499', 
+    image: require('../assets/lottie/images (3).jpeg') 
+  },
+  { id: '7', 
+    name: 'Skechers', 
+    price: '₹ 12,999', 
+    image: require('../assets/lottie/download (3).jpeg') 
+  },
+  { id: '8', 
+    name: 'Red Chief', 
+    price: '₹ 10,999', 
+    image: require('../assets/lottie/download (2).jpeg') 
+  },
 ];
 
 const BRANDS = ['All', 'Nike', 'Adidas', 'Puma', 'New Balance', 'Reebok', 'Asics'];
@@ -180,7 +212,7 @@ export default function HomeScreen({ navigation }: { navigation: any }) {
       <Modal transparent visible={showMenu} animationType="fade">
         <Pressable style={styles.overlay} onPress={() => setShowMenu(false)}>
           <View style={styles.menuCard}>
-            {['Settings', 'Saved', 'About', 'Logout'].map(item => (
+            {['Settings', 'Saved', 'About'].map(item => (
               <TouchableOpacity key={item} style={styles.menuItem} onPress={() => handleMenuPress(item)}>
                 <Text style={styles.menuText}>{item}</Text>
               </TouchableOpacity>

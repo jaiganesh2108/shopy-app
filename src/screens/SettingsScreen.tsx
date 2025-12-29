@@ -50,9 +50,18 @@ export default function SettingsScreen({ navigation }: SettingsScreenProps) {
 
         <SettingItem label="About App" onPress={() => {}} />
 
-        <TouchableOpacity style={styles.logout}>
-          <Text style={styles.logoutText}>Logout</Text>
+        <TouchableOpacity
+        style={styles.logout}
+        onPress={() =>
+            navigation.reset({
+            index: 0,
+            routes: [{ name: 'Login' }],
+            })
+        }
+        >
+        <Text style={styles.logoutText}>Logout</Text>
         </TouchableOpacity>
+
       </View>
     </SafeAreaView>
   );
