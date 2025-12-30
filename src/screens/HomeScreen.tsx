@@ -17,6 +17,8 @@ const ICON_HEART = require('../assets/icons/heart.png');
 const ICON_SEARCH = require('../assets/icons/search.png');
 const ICON_CART = require('../assets/icons/shopping-cart.png');
 const ICON_MENU = require('../assets/icons/menu-burger.png');
+const ICON_CHATBOT = require('../assets/icons/chat-bot.png');
+
 
 const SHOES = [
   { id: '1', 
@@ -126,8 +128,14 @@ export default function HomeScreen({ navigation }: { navigation: any }) {
 
   const handleMenuPress = (item: string) => {
     setShowMenu(false);
-    if (item === 'Settings') navigation.navigate('Settings');
-  };
+      if (item === 'Settings') {
+        navigation.navigate('Settings');
+      }
+
+      if (item === 'About') {
+        navigation.navigate('About');
+      }
+    };
 
   return (
     <SafeAreaView style={styles.container}>
@@ -212,7 +220,7 @@ export default function HomeScreen({ navigation }: { navigation: any }) {
       <Modal transparent visible={showMenu} animationType="fade">
         <Pressable style={styles.overlay} onPress={() => setShowMenu(false)}>
           <View style={styles.menuCard}>
-            {['Settings', 'Saved', 'About'].map(item => (
+            {['Settings', 'About'].map(item => (
               <TouchableOpacity key={item} style={styles.menuItem} onPress={() => handleMenuPress(item)}>
                 <Text style={styles.menuText}>{item}</Text>
               </TouchableOpacity>
@@ -220,6 +228,14 @@ export default function HomeScreen({ navigation }: { navigation: any }) {
           </View>
         </Pressable>
       </Modal>
+      {/* FLOATING CHATBOT BUTTON */}
+      <TouchableOpacity
+        style={styles.chatbotFab}
+        onPress={() => navigation.navigate('ChatBot')}
+        activeOpacity={0.8}
+      >
+        <Image source={ICON_CHATBOT} style={styles.chatbotIcon} />
+      </TouchableOpacity>
     </SafeAreaView>
   );
 }
@@ -403,4 +419,27 @@ const styles = StyleSheet.create({
   menuText: { 
     fontSize: 16 
   },
+  chatbotFab: {
+  position: 'absolute',
+  bottom: 30,
+  right: 20,
+  width: 60,
+  height: 60,
+  borderRadius: 30,
+  backgroundColor: '#fa030399',
+  justifyContent: 'center',
+  alignItems: 'center',
+  elevation: 6,          // Android shadow
+  shadowColor: '#000',   // iOS shadow
+  shadowOffset: { width: 0, height: 4 },
+  shadowOpacity: 0.3,
+  shadowRadius: 4,
+},
+
+chatbotIcon: {
+  width: 28,
+  height: 28,
+  tintColor: '#fff',
+},
+
 });
