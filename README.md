@@ -13,6 +13,9 @@ This app demonstrates real-world e-commerce UI patterns such as animated search,
   <img src="https://github.com/user-attachments/assets/645f67ee-8455-49c6-ac36-5ae347275d0b" width="200" />
   <img src="https://github.com/user-attachments/assets/67b20515-1494-4a03-ba5a-a2bfe3ab784e" width="200" />
   <img src="https://github.com/user-attachments/assets/47aaa217-3118-46c0-9928-2553db4f26e5" width="200" />
+  <img src="https://github.com/user-attachments/assets/1787719a-7d99-4c65-90b3-f5b7bef895cb" width="200" />
+  <img src="https://github.com/user-attachments/assets/1eae8c2e-3ec0-49fd-91c6-f4be2764e295" width="200" />
+  <img src="https://github.com/user-attachments/assets/e18fdfe5-8a80-49cd-bb6c-348b2427a0a8" width="200" />
 </p>
 
 ---
